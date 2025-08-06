@@ -9,8 +9,8 @@ npx protoc --ts_out ./pb --proto_path ./proto user/user.proto
 
 ```
 
-install plugin
+install runtime
 ```bash
-npm install -D @protobuf-ts/plugin
+npm install @protobuf-ts/runtime
 
 ```
