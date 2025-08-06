@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config([
-  globalIgnores(['dist', 'pb']),
+  globalIgnores(['dist', 'pb']), //? menghilangkan error lit di folder pb
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
