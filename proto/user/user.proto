@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "grpc-course-protobuf/pb/user";
+
+import "common/base_response.proto";
+import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
+
+service UserService {
+  rpc CreateUser (User) returns (CreateResponse );//Unary
+  rpc Login (LoginRequest) returns (LoginResponse );
+}
+
+message Address { //dipisah agar rapi
+  int64 id = 1;
+  string full_address = 2;
+  string province = 3;
+  string city = 4;
+}
+
+message User {
+  // This is reserved for because 'full_name' is not being used again
+  reserved 2; //booking penomoran yang gak kita pake (menghapus full_name)
+  int64 id = 1;
+  // string full_name = 2;
+  int64 age = 3[(buf.validate.field).int64.gte = 0];//ingin validasi nilainya tidak boleh negatif
+  double balance = 4 [(buf.validate.field).double = { gte: 0, lte: 1000000.0 }];
+  bool is_active = 5;
+  Address address = 6;
+  repeated string educations = 7; //['SMA', 'D2', 'D3'], ['S1', 'S2', 'S3']
+  string spouse_name = 8;
+  google.protobuf.Timestamp birth_date = 9;
+}
+
+message CreateResponse {
+  common.BaseResponse base = 1; 
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    common.BaseResponse base = 1;
+    string access_token = 2;
+    string refresh_token = 3;
+}
