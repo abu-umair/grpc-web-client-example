@@ -20,3 +20,9 @@ install runtime-rpc
 npm install @protobuf-ts/runtime-rpc
 
 ```
+
+generate ulang base response (import gagal pada common, karena belum diinstall)
+```bash
+npx protoc --ts_out ./pb --proto_path ./proto common/base_response.proto
+
+```
