@@ -14,3 +14,9 @@ install runtime
 npm install @protobuf-ts/runtime
 
 ```
+
+install runtime-rpc
+```bash
+npm install @protobuf-ts/runtime-rpc
+
+```
