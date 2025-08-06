@@ -26,3 +26,9 @@ generate ulang base response (import gagal pada common, karena belum diinstall)
 npx protoc --ts_out ./pb --proto_path ./proto common/base_response.proto
 
 ```
+
+install grpcweb-transport
+```bash
+npm install @protobuf-ts/grpcweb-transport
+
+```
