@@ -32,3 +32,9 @@ install grpcweb-transport
 npm install @protobuf-ts/grpcweb-transport
 
 ```
+
+downgrade vite karena error
+```bash
+npm uninstall vite
+npm install vite@5.2.8 --save-dev
+```

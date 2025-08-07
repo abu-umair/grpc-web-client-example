@@ -1,10 +1,30 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { GrpcWebFetchTransport } from '@protobuf-ts/grpcweb-transport'
+import { UserServiceClient } from './../pb/user/user.client'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const getData = async () => {
+      const transport = new GrpcWebFetchTransport({
+        baseUrl: "http://localhost:8080" //? menyesuaikan dengan port di grpcwebproxy, (jangan lupa dijalankan)
+      });
+
+      const clientService = new UserServiceClient(transport);
+
+      const res = await clientService.login({
+        email: 'mario@gmail.com',
+        password: 'mario123'
+      });
+
+      console.log(res.response);
+    }
+    getData();
+  }, []);
 
   return (
     <>
